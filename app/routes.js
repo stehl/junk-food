@@ -177,10 +177,49 @@ module.exports = function(app) {
             });
         });
 
+        // --- City routes
+
+        app.get('/api/city', function(req, res){
+            City.find(function(err, cities){
+                if(err)
+                    res.send(err);
+                res.json(cities);
+            });
+        });
+
+        app.post('/api/city', function(req, res){
+            City.create({
+                name : req.body.name,
+                population : req.body.population,
+                rate : 2.5
+            }, function(err, city){
+                if(err)
+                    res.send(err);
+                City.find(function(err, cities){
+                    if(err)
+                        res.send(err);
+                    res.json(cities);
+                });
+            });
+        });
+
+        app.delete('/api/city/:city_id', function(req, res){
+            City.remove({
+                _id : res.params.city_id
+            }, function(err, city){
+                if(err)
+                    res.send(err);
+                City.find(function(err, cities){
+                    if(err)
+                        res.send(err);
+                    res.json(cities);
+                });
+            }); 
+        });
+
     // --- Basic routes
 
     app.get('*', function(req, res){
-        res.sendfile('./public/index.html');
+        res.sendfile('index.html');
     });
 };
-
