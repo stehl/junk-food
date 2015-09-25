@@ -63,7 +63,8 @@ module.exports = function(app) {
             Ingredient.create({
                 name : req.body.name,
                 taste : req.body.taste,
-                quality : req.body.quality
+                quality : req.body.quality,
+                picture : req.body.picture
             }, function(err, ingredient){
                 if(err)
                     res.send(err);
@@ -86,6 +87,93 @@ module.exports = function(app) {
                         res.send(err);
                     res.json(ingredients);
                 })
+            });
+        });
+
+        // --- Burgers routes
+
+        app.get('/api/burger', function(req, res){
+            Burger.find(function(err, burgers){
+                if(err)
+                    res.send(err);
+                res.json(burgers);
+            });
+        });
+
+        app.post('/api/burger', function(req, res){
+            Burger.create({
+                name : req.body.name,
+                restaurant : req.body.restaurant,
+                description : req.body.description,
+                price : req.body.price,
+                rate : 2.5,
+                ingredients : req.body.ingredients,
+                picture : req.body.picture
+            },function(err, burger){
+                if(err)
+                    res.send(err);
+                Burger.find(function(err, burgers){
+                    if(err)
+                        res.send(err);
+                    res.json(burgers);
+                });
+            });
+        });
+
+        app.delete('/api/burger/:burger_id', function(req, res){
+            Burger.remove({
+                _id : res.params.burger_id
+            }, function(err, burger){
+                if(err)
+                    res.send(err)
+                Burger.find(function(err, burgers){
+                    if(err)
+                        res.send(err);
+                    res.json(burgers);
+                });
+            });
+        });
+
+        // --- Restaurant routes
+
+        app.get('/api/restaurant', function(req, res){
+            Restaurant.find(function(err, restaurants){
+                if(err)
+                    res.send(err);
+                res.json(restaurants);
+            });
+        });
+
+        app.post('/api/restaurant', function(req, res){
+            Restaurant.create({
+                name : req.body.name,
+                city : req.body.city,
+                burgers : "",
+                rate : 2.5,
+                avg_price : 0,
+                picture : req.body.picture
+            }, function(err, restaurant){
+                if(err)
+                    res.send(err);
+                Restaurant.find(function(err, restaurants){
+                    if(err)
+                        res.send(err);
+                    res.json(restaurants);
+                });
+            });
+        });
+
+        app.delete('/api/restaurant/:restaurant_id', function(req, res){
+            Restaurant.remove({
+                _id : req.params.restaurant_id
+            }, function(err, restaurant){
+                if(err)
+                    res.send(err);
+                Restaurant.find(function(err, restaurants){
+                    if(err)
+                        res.send(err);
+                    res.json(restaurants);
+                });
             });
         });
 

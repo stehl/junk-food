@@ -6,5 +6,6 @@ module.exports = mongoose.model('Burger', {
     description : String,
     price : Number,
     rate : Number,
-    ingredients : String
+    ingredients : String,
+    picture : String
 });

@@ -5,5 +5,6 @@ module.exports = mongoose.model('Restaurant', {
     city : Number,
     burgers : String,
     rate : Number,
-    avg_price : Number
+    avg_price : Number,
+    picture : String
 });
