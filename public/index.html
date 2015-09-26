@@ -17,6 +17,7 @@
     	<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body ng-controller="mainController">
+	<!-- The header -->
 	<header>
 		<nav>
 			<ul id="dropdown1" class="dropdown-content">
@@ -33,17 +34,18 @@
 			</div>
 		</nav>
 	</header>
+	<!-- The content -->
 	<main>
 		<div class="row"></div>
 		<div class="row">
-			<div class="col m7 s12">
+			<div class="col l8 s12">
 				<div class="row">
 					<div class="col s12">
 						<div class="row">
-							<h3>What's good near me ?</h3>
+							<h3 class="center">What's good near me ?</h3>
 						</div>
 						<div class="row">
-							<div class="col s7">
+							<div class="col l7 s12">
 								<div class="row">
 									<div class="card small">
 										<div class="card-image">
@@ -75,8 +77,10 @@
 									</div>
 								</div>
 							</div>
-							<div class="col s5" style="height:100%; width:100%;">
-								<div id="map"></div>
+							<div class="col l5 s12">
+								<h5 class="center">Where are you ?</h5>
+								<iframe width="100%" height="600" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/view?zoom=16&center=52.3361%2C-6.4576&key=AIzaSyC0sG784JzY4pKHLAxdvCS-yweQBGUwOeU" allowfullscreen></iframe>
+								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Necessitatibus dignissimos eveniet labore, atque fuga sequi adipisci. Rerum pariatur quisquam a cupiditate quis nihil ipsam similique earum magni numquam consectetur, vitae!</p>
 							</div>
 						</div>
 					</div>					
@@ -87,11 +91,12 @@
 					</div>
 				</div>
 			</div>
-			<div class="col m5 s12">
+			<div class="col l4 s12">
 				<h3>What do my friends eat ?</h3>
 			</div>
 		</div>
 	</main>
+	<!-- The footer -->
 	<footer>
 		
 	</footer>
@@ -104,17 +109,6 @@
     <script src="assets/js/bin/materialize.js"></script>
     <script>
     	$(".dropdown-button").dropdown();
-
-    	function initialize() {
-        var mapCanvas = document.getElementById('map');
-        var mapOptions = {
-          center: new google.maps.LatLng(44.5403, -78.5463),
-          zoom: 8,
-          mapTypeId: google.maps.MapTypeId.ROADMAP
-        }
-        var map = new google.maps.Map(mapCanvas, mapOptions)
-      }
-      google.maps.event.addDomListener(window, 'load', initialize);
     </script>
 </body>
 </html>
